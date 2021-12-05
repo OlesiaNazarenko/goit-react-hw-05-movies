@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import {
-  useParams,
-  useLocation,
-  useNavigate,
-  useMatch,
-} from 'react-router-dom';
+import { useParams, useLocation, useMatch } from 'react-router-dom';
 import { getMovieCredits } from '../../services/API';
-
+import styled from 'styled-components';
+const List = styled.ul`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10em, 3fr));
+  grid-gap: 2em;
+  list-style: none;
+`;
 export default function Cast() {
-  const navigate = useNavigate();
   const location = useLocation();
   const { movieId } = useParams();
   const match = useMatch(`/movies/${movieId}/cast/`);
@@ -27,10 +27,11 @@ export default function Cast() {
   return (
     <>
       {cast && (
-        <ul>
+        <List>
           {cast.map(actor => (
             <li key={actor.id}>
               <img
+                width="150px"
                 src={`https://image.tmdb.org/t/p/w342/${actor.profile_path}`}
                 alt={actor.name}
               />
@@ -38,7 +39,7 @@ export default function Cast() {
               <h4>Character: {actor.character}</h4>
             </li>
           ))}
-        </ul>
+        </List>
       )}
     </>
   );

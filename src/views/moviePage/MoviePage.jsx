@@ -15,7 +15,6 @@ const DetailesDiv = styled.div`
   display: flex;
   width: 800px;
   margin-top: 20px;
-  border: 1px solid red;
 `;
 const Poster = styled.img`
   display: inline-block;
@@ -41,7 +40,7 @@ export default function MoviePage() {
     });
   }, [movieId]);
   const cbOnClick = () => {
-    location.state ? navigate(location.state.from) : navigate('/');
+    navigate(location.state?.from || '/');
   };
 
   console.log(location);
