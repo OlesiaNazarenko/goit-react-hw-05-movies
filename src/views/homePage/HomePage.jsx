@@ -11,13 +11,13 @@ export default function Trending() {
         setMovies(data);
         console.log(data);
       })
-      .catch(e => console.log(e.message));
+      .catch(e => alert(e.message));
   }, []);
 
   return (
     <Container>
       <h2>Trending today</h2>
-      {<MovieList movies={movies} />}
+      {movies && <MovieList movies={movies} />}
     </Container>
   );
 }

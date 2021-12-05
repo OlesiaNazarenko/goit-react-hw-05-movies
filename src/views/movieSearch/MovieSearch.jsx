@@ -44,7 +44,6 @@ export default function MovieSearch() {
       setMovies(data);
     });
   };
-
   const handleSubmit = e => {
     e.preventDefault();
     if (query.trim() === '') {
@@ -53,7 +52,6 @@ export default function MovieSearch() {
     }
     getFilms(query);
     setQuery('');
-    // onSubmit(query);
   };
   return (
     <Container>

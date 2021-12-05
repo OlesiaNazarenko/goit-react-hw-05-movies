@@ -21,7 +21,9 @@ function getMoviesDetails(movieId) {
 }
 function getMovieCredits(movieId) {
   return axios(`${BASE_URL}/movie/${movieId}/credits?api_key=${API_KEY}`).then(
-    ({ data }) => data.results,
+    ({ data }) => {
+      return data.cast;
+    },
   );
 }
 function getMovieReviews(movieId) {
