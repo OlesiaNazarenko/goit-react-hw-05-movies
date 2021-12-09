@@ -2,22 +2,15 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import s from './MovieList.module.css';
 import Container from '../../components/container/Container';
-const List = styled.ul`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(18em, 1fr));
-  grid-gap: 5em;
-  list-style: none;
-`;
-
 export default function MovieList({ movies }) {
+  console.log(movies);
   const location = useLocation();
   return (
     <Container>
-      <List>
+      <ul className={s.list}>
         {movies.map(movie => {
-          // console.log(movie);
           return (
             <li key={movie.id}>
               <Link to={`/movies/${movie.id}`} state={{ from: location }}>
@@ -31,7 +24,7 @@ export default function MovieList({ movies }) {
             </li>
           );
         })}
-      </List>
+      </ul>
     </Container>
   );
 }

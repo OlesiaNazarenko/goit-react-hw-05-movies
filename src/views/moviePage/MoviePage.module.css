@@ -1,0 +1,14 @@
+.DetailesDiv {
+  display: flex;
+  width: 100%;
+  margin-top: 20px;
+}
+.TextInfo {
+  width: 60%;
+  margin-left: 20px;
+}
+.Poster {
+  display: inline-block;
+  width: 250px;
+  height: 400px;
+}

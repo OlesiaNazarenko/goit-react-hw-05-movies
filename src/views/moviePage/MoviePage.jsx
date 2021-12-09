@@ -10,52 +10,39 @@ import {
 } from 'react-router-dom';
 import Container from '../../components/container/Container';
 import { getMoviesDetails } from '../../services/API';
-import styled from 'styled-components';
-const DetailesDiv = styled.div`
-  display: flex;
-  width: 800px;
-  margin-top: 20px;
-`;
-const Poster = styled.img`
-  display: inline-block;
-  width: 250px;
-  height: 400px;
-`;
-const TextInfo = styled.div`
-  width: 300px;
-  margin-left: 20px;
-`;
-const Cast = lazy(() => import('../../components/cast/Cast'));
-const Review = lazy(() => import('../../components/reviews/Review'));
-
+import s from './MoviePage.module.css';
+const Cast = lazy(() =>
+  import('../../components/cast/Cast' /* webpackChunkName: "cast" */),
+);
+const Review = lazy(() =>
+  import('../../components/reviews/Review' /* webpackChunkName: "reviews" */),
+);
 export default function MoviePage() {
   const [movie, setMovie] = useState({});
   const { movieId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
-
   useEffect(() => {
     getMoviesDetails(movieId).then(data => {
       setMovie(data);
     });
   }, [movieId]);
   const cbOnClick = () => {
-    navigate(location.state?.from || '/');
+    location.state ? navigate(location.state.from) : navigate('/');
   };
-
-  console.log(location);
   return (
     <Container>
       <button type="button" onClick={cbOnClick}>
         Go back
       </button>
       <>
-        <DetailesDiv className="movieDetails">
-          <Poster
+        <div className={s.DetailesDiv}>
+          <img
+            className={s.Poster}
             src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`}
             alt={movie.original_title}
           />
-          <TextInfo>
+          <div className={s.TextInfo}>
             <h2>{movie.title}</h2>
             <p>User Score: {movie.vote_average * 10}%</p>
             <h3>Overview</h3>
@@ -70,18 +57,19 @@ export default function MoviePage() {
                   .join(' / ')}
               </p>
             )}
-          </TextInfo>
-        </DetailesDiv>
+          </div>
+        </div>
         <div className="aditionalInformation">
           <h4>Additional information</h4>
           <ul>
             <li>
-              <NavLink to="cast" state={location.state}>
+              <NavLink to={`/movies/${movieId}/cast`} state={location.state}>
                 Cast
               </NavLink>
             </li>
+
             <li>
-              <NavLink to="reviews" state={location.state}>
+              <NavLink to={`/movies/${movieId}/reviews`} state={location.state}>
                 Reviews
               </NavLink>
             </li>

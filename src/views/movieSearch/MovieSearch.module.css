@@ -1,0 +1,25 @@
+.SearchButton {
+  padding: 8px 0;
+  position: absolute;
+  background: #900c3f;
+  color: white;
+  border: none;
+  width: 37px;
+  height: 37px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 50%;
+  margin-left: -35px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+}
+.Input {
+  padding: 10px 15px;
+  border-radius: 50px;
+  border: none;
+  font-size: 14px;
+  background: rgba(202, 207, 210, 0.4);
+}
+.Form {
+  padding: 10px;
+}

@@ -5,10 +5,9 @@ export default function Reviews() {
   const { movieId } = useParams();
   const [movie, setMovie] = useState([]);
   useEffect(() => {
-    getMovieReviews(movieId)
+    getMovieReviews(movieId, '/reviews')
       .then(data => {
         setMovie(data);
-        console.log(data);
       })
       .catch(error => alert(error.message));
   }, [movieId]);
