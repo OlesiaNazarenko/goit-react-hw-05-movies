@@ -2,6 +2,7 @@ import Container from '../../components/container/Container';
 import React, { useState, useEffect } from 'react';
 import { getTrendingMovies } from '../../services/API';
 import MovieList from '../../components/movieList/MovieList';
+import s from './HomePage.module.css';
 export default function Trending() {
   const [movies, setMovies] = useState([]);
   useEffect(() => {
@@ -14,7 +15,7 @@ export default function Trending() {
 
   return (
     <Container>
-      <h2>Trending today</h2>
+      <h2 className={s.title}>Trending today</h2>
       {movies && <MovieList movies={movies} />}
     </Container>
   );

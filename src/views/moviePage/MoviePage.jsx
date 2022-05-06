@@ -11,6 +11,7 @@ import {
 import Container from '../../components/container/Container';
 import { getMoviesDetails } from '../../services/API';
 import s from './MoviePage.module.css';
+import ArrowBack from '../../assets/img/arrow_back.svg';
 const Cast = lazy(() =>
   import('../../components/cast/Cast' /* webpackChunkName: "cast" */),
 );
@@ -32,8 +33,8 @@ export default function MoviePage() {
   };
   return (
     <Container>
-      <button type="button" onClick={cbOnClick}>
-        Go back
+      <button type="button" onClick={cbOnClick} className={s.goBackBtn}>
+        <img src={ArrowBack} alt="Go back" className={s.goBackBtnImg} /> Go back
       </button>
       <>
         <div className={s.DetailesDiv}>
@@ -57,23 +58,26 @@ export default function MoviePage() {
                   .join(' / ')}
               </p>
             )}
+            <h4>Additional information</h4>
+            <ul className={s.addInfoList}>
+              <li className={s.addInfoListItem}>
+                <NavLink to={`/movies/${movieId}/cast`} state={location.state}>
+                  Cast
+                </NavLink>
+              </li>
+
+              <li className={s.addInfoListItem}>
+                <NavLink
+                  to={`/movies/${movieId}/reviews`}
+                  state={location.state}
+                >
+                  Reviews
+                </NavLink>
+              </li>
+            </ul>
           </div>
         </div>
         <div className="aditionalInformation">
-          <h4>Additional information</h4>
-          <ul>
-            <li>
-              <NavLink to={`/movies/${movieId}/cast`} state={location.state}>
-                Cast
-              </NavLink>
-            </li>
-
-            <li>
-              <NavLink to={`/movies/${movieId}/reviews`} state={location.state}>
-                Reviews
-              </NavLink>
-            </li>
-          </ul>
           <Outlet />
         </div>
       </>

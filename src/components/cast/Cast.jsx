@@ -12,7 +12,7 @@ export default function Cast() {
   }, [movieId]);
   return (
     <>
-      {cast && (
+      {cast ? (
         <ul className={s.list}>
           {cast.map(actor => (
             <li key={actor.id}>
@@ -35,8 +35,9 @@ export default function Cast() {
             </li>
           ))}
         </ul>
+      ) : (
+        <p>There are no information about the cast of this movie.</p>
       )}
-      {cast && <p>There are no information about the cast of this movie.</p>}
     </>
   );
 }
